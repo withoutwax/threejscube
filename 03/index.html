@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>My third three.js app</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            canvas {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <body>
+            <script src="js/three.js"></script>
+            <script>
+                // Our JavaScript will go here.
+
+                // Scene Setup
+                var scene = new THREE.Scene();
+                var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+                var renderer = new THREE.WebGLRenderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                
+                // Adding a Triangle
+                var triangleMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x2685AA,
+                    side: THREE.DoubleSide
+                });
+                var triangleGeometry = triangle01();
+                var triangleMesh = new THREE.Mesh(triangleGeometry, triangleMaterial);
+                scene.add(triangleMesh);
+
+                
+                function triangle01() {
+                    var triangle = new THREE.Geometry();
+                    triangle.vertices.push(new THREE.Vector3(1, 1, 0));
+                    triangle.vertices.push(new THREE.Vector3(3, 1, 0));
+                    triangle.vertices.push(new THREE.Vector3(3, 3, 0));
+
+                    triangle.faces.push(new THREE.Face3(0, 1, 2));
+
+                    return triangle;
+                }
+
+                camera.position.z = 5;
+                renderer.render(scene, camera);
+
+            </script>
+        </body>
+    </head>
+</html>
+
