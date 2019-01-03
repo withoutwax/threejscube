@@ -36,7 +36,6 @@
                 var triangleMesh = new THREE.Mesh(triangleGeometry, triangleMaterial);
                 scene.add(triangleMesh);
 
-                
                 function triangle01() {
                     var triangle = new THREE.Geometry();
                     triangle.vertices.push(new THREE.Vector3(1, 1, 0));
@@ -47,6 +46,29 @@
 
                     return triangle;
                 }
+
+                // Adding a Square
+                var squareMaterial = new THREE.MeshBasicMaterial({
+                    color: 0xF6831E,
+                    side: THREE.DoubleSide
+                });
+                var squareGeometry = square01(1, 3, 5, 7);
+                var squareMesh = new THREE.Mesh(squareGeometry, squareMaterial);
+                scene.add(squareMesh);
+
+                function square01(x1, y1, x2, y2) {
+                    var square = new THREE.Geometry();
+                    square.vertices.push(new THREE.Vector3(x1, y1, 0));
+                    square.vertices.push(new THREE.Vector3(x2, y1, 0));
+                    square.vertices.push(new THREE.Vector3(x2, y1, 0));
+                    square.vertices.push(new THREE.Vector3(x1, y1, 0));
+
+                    square.faces.push(new THREE.Face3(0, 1, 2));
+                    square.faces.push(new THREE.Face3(2, 0, 3));
+
+                    return square;
+                }
+
 
                 camera.position.z = 5;
                 renderer.render(scene, camera);
